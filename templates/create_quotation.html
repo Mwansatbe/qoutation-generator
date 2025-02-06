@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Myrtle-tech - Create Quotation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        let counter = 0;  // Start from 0 instead of 1
+        function addRow() {
+            let table = document.getElementById("items");
+            let tbody = table.getElementsByTagName('tbody')[0];
+            let row = tbody.insertRow(-1);
+            
+            let descriptionCell = row.insertCell(0);
+            let quantityCell = row.insertCell(1);
+            let priceCell = row.insertCell(2);
+            let actionCell = row.insertCell(3);
+
+            descriptionCell.innerHTML = `<input type="text" name="description${counter}" class="form-control" required>`;
+            quantityCell.innerHTML = `<input type="number" name="quantity${counter}" class="form-control" step="0.01" min="0" required>`;
+            priceCell.innerHTML = `<input type="number" name="unit_price${counter}" class="form-control" step="0.01" min="0" required>`;
+            
+            let deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "btn btn-danger btn-sm";
+            deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteButton.onclick = function() { row.remove(); };
+            actionCell.appendChild(deleteButton);
+
+            counter++;
+        }
+
+        // Add first row automatically when page loads
+        window.onload = function() {
+            addRow();  // Add first row automatically
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Create Quotation</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="customer-info mb-4">
+                            <h4 class="text-secondary">Customer Information</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><strong>Customer:</strong> {{ customer[0] }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><strong>Contact:</strong> {{ customer[1] }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><strong>Email:</strong> {{ customer[2] }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="company_name" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="company_name" name="company_name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <h4 class="text-secondary">Items</h4>
+                                <div class="table-responsive">
+                                    <table id="items" class="table table-bordered table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Items will be added here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button type="button" class="btn btn-success" onclick="addRow()">
+                                    <i class="fas fa-plus"></i> Add Item
+                                </button>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="hidden" name="item_count" id="item_count" value="0">
+                            </div>
+
+                            <div class="text-end mt-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-file-invoice"></i> Generate Quotation
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

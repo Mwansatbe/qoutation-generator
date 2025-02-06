@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+.env
+.venv
+env.bak/
+venv.bak/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+myrtle_tech_quotations.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Generated files
+instance/
+.webassets-cache
+generated_pdfs/
+*.pdf
+*.csv
+*.xlsx
+*.xls
+
+# Log files
+*.log
+logs/
+log/
+
+# Local development configuration
+config.py
+.env
+*.cfg
+
+# Temporary files
+*.tmp
+*.temp
+.coverage
+htmlcov/ 
